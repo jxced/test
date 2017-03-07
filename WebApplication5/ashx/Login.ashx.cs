@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
-using System.Security.Cryptography;//加密
+//using System.Security.Cryptography;//加密
+using System.Web.Security;
 
 namespace WebApplication5.ashx
 {
@@ -16,7 +17,7 @@ namespace WebApplication5.ashx
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/html";
-            d
+           
             Model.Users u = new Model.Users();
             u.Name = context.Request.Form["name"];
             u.Pwd = context.Request.Form["pwd"];
