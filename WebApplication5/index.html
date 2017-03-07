@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style type="text/css">
+        .divReg div{
+           margin:10px 3px;
+           height:25px;
+           align-content:center;
+        }
+    </style>
+</head>
+<body style="padding-top:100px;">
+    <form action="/ashx/Login.ashx" method="post">
+        <div class="divReg" style="margin:0 auto;height:280px;width:280px;border:2px solid #808080;">
+            <div >用户名：<input type="text" name="name" /></div>
+            <div ><span style="text-align:justify">密码：</span><input type="password" name="pwd" /></div>
+            <div >验证码：<input type="text" name="vcode" style="width:45px;" /> <img src="/ashx/ImgVcode.ashx" style="vertical-align:middle;"/></div>
+            <div style="padding-left:100px;"><input type="submit" value="提交" /></div>
+            </div>
+        
+        
+    </form>
+    
+</body>
+</html>
