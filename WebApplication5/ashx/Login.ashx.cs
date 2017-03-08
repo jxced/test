@@ -35,6 +35,10 @@ namespace WebApplication5.ashx
                         System.Text.StringBuilder sb = new System.Text.StringBuilder(200);
                         context.Response.Write("欢迎" + us.Name + "登陆");
                     }
+                    else
+                    {
+                        context.Response.Write("<script>alert('用户名密码错误');window.location='/index.html'</script>");
+                    }
                 }
                 else
                 {
