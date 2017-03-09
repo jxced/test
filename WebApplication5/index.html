@@ -12,25 +12,43 @@
                 this.src = "/ashx/ImgVcode.ashx?id=" + Math.random();//*(2.00-1.00)+1.00;   加随机数也可以避免图片缓存
             }
         }
+        function GetTime() {
+            var time = new XMLHttpRequest();
+            time.open("get", "getServerTime.ashx", true);
+            function () {
+
+            }
+            time.send(null);
+        }
+        
     </script>
     <style type="text/css">
-        .divReg div{
+        #divReg div{
            margin:10px 3px;
-           height:25px;
            align-content:center;
+           min-height:40px;
+           height:40px;
+        }
+        #divReg input{
+            height:25px;
+            min-height:25px;
+            padding:0px;
+            border:1px solid #808080;
         }
     </style>
 </head>
 <body style="padding-top:100px;">
     <form action="/ashx/Login.ashx" method="post">
-        <div class="divReg" style="margin:0 auto;height:280px;width:280px;border:2px solid #808080;">
+        <div id="divReg" style="margin:0 auto;height:280px;width:280px;border:2px solid #808080;">
             <div >用户名：<input type="text" name="name" /></div>
             <div ><span style="text-align:justify">密码：</span><input type="password" name="pwd" /></div>
-            <div >验证码：<input type="text" name="vcode" style="width:45px;" /> <img id="vcode" src="/ashx/ImgVcode.ashx" style="vertical-align:middle;"/></div>
-            <div style="padding-left:100px;"><input type="submit" value="提交" /></div>
+            <div >验证码：<input type="text" name="vcode" style="width:55px;" /> <img id="vcode" src="/ashx/ImgVcode.ashx" style="vertical-align:middle;"/></div>
+            <div style="padding-left:100px;"><input type="submit" value="提交" style="width: 40px" /></div>
+            <div><input type="button" onclick="GetTime()" id="getTime" value="获得系统时间"/></div>
             </div>
-        
-        
+        <div>
+        <input  type="text" id="timeText" name="timeText"/>
+        <div><input type="button" onclick="GetTime()" id="getTime" value="获得系统时间" /></div></div>
     </form>
     
 </body>
