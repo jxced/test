@@ -12,6 +12,9 @@ namespace WebApplication5
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["a"]=
+           string s= Request.Headers["If-Modified-Since"];
+            string ss= Request.Headers.Keys.ToString();
+            Response.Write(s+":"+ss);
         }
     }
 }

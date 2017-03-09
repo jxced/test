@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta  http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
     <title></title>
 	<meta charset="utf-8" />
     <script type="text/javascript">
@@ -10,11 +11,13 @@
             obj.onclick = function () {
                 //this.src = "/ashx/ImgVcode.ashx?id=" + (new Date()).valueOf();//+new。。。避免图片缓存
                 this.src = "/ashx/ImgVcode.ashx?id=" + Math.random();//*(2.00-1.00)+1.00;   加随机数也可以避免图片缓存
+                //window.HTMLHeadingElement["If-Modified-Since"] = "0";
             }
         };
         function GetTime() {
             var time = new XMLHttpRequest();
             time.open("get", "/ashx/getServerTime.ashx", true);
+            time.setRequestHeader("If-Modified-Since", "0");
             time.onreadystatechange = function () {
                 if (time.readyState == 4) {
                     if (time.status=="200") {

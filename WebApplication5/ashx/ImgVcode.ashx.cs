@@ -15,6 +15,7 @@ namespace WebApplication5.ashx
     {
         public void ProcessRequest(HttpContext context)
         {
+            
             context.Response.ContentType = "image/jpeg";
             using (Image img = new Bitmap(55, 25))
             {
