@@ -100,6 +100,7 @@
     </Content>
     <Content Include="ashx\Login.ashx" />
     <Content Include="ashx\ImgVcode.ashx" />
+    <Content Include="ashx\getServerTime.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -113,6 +114,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ashx\getServerTime.ashx.cs">
+      <DependentUpon>getServerTime.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ashx\ImgVcode.ashx.cs">
       <DependentUpon>ImgVcode.ashx</DependentUpon>
     </Compile>

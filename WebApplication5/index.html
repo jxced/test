@@ -5,21 +5,28 @@
     <title></title>
 	<meta charset="utf-8" />
     <script type="text/javascript">
-        window.onload= function () {
-            var obj= document.getElementById("vcode");
+        window.onload = function () {
+            var obj = document.getElementById("vcode");
             obj.onclick = function () {
                 //this.src = "/ashx/ImgVcode.ashx?id=" + (new Date()).valueOf();//+new。。。避免图片缓存
                 this.src = "/ashx/ImgVcode.ashx?id=" + Math.random();//*(2.00-1.00)+1.00;   加随机数也可以避免图片缓存
             }
-        }
+        };
         function GetTime() {
             var time = new XMLHttpRequest();
-            time.open("get", "getServerTime.ashx", true);
-            function () {
-
-            }
+            time.open("get", "/ashx/getServerTime.ashx", true);
+            time.onreadystatechange = function () {
+                if (time.readyState == 4) {
+                    if (time.status=="200") {
+                        var s = time.responseText;
+                        document.getElementById("timeText").value= s;
+                    }
+                    
+                }
+                
+            };
             time.send(null);
-        }
+        };
         
     </script>
     <style type="text/css">
@@ -44,10 +51,9 @@
             <div ><span style="text-align:justify">密码：</span><input type="password" name="pwd" /></div>
             <div >验证码：<input type="text" name="vcode" style="width:55px;" /> <img id="vcode" src="/ashx/ImgVcode.ashx" style="vertical-align:middle;"/></div>
             <div style="padding-left:100px;"><input type="submit" value="提交" style="width: 40px" /></div>
-            <div><input type="button" onclick="GetTime()" id="getTime" value="获得系统时间"/></div>
             </div>
         <div>
-        <input  type="text" id="timeText" name="timeText"/>
+        <input  type="text" id="timeText" name="timeText" value=""/>
         <div><input type="button" onclick="GetTime()" id="getTime" value="获得系统时间" /></div></div>
     </form>
     
