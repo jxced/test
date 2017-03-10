@@ -24,13 +24,29 @@
                         var s = time.responseText;
                         document.getElementById("timeText").value= s;
                     }
-                    
                 }
-                
             };
             time.send(null);
         };
-        
+        function GetList() {
+            var list = new XMLHttpRequest();
+            list.open("get", "/ashx/selected.ashx", true);
+            list.setRequestHeader("If-Modified-Since","0")
+            list.onreadystatechange = function () {
+                if (list.readyState==4&&list.status==200) {
+                    var str = list.responseText;
+                    var selectList= document.getElementById("selectList");
+                    selectList.length = 0;
+                    selectList.add(new Option("点击选择", 0));
+                    var objList = JSON.parse(str);
+                    for (var i = 0; i < objList.length; i++) {
+                        var opt = new Option(objList[i].Name, i+1);
+                       selectList.add(opt);
+                    }
+                }
+            };
+            list.send(null);
+        }
     </script>
     <style type="text/css">
         #divReg div{
@@ -49,15 +65,24 @@
 </head>
 <body style="padding-top:100px;">
     <form action="/ashx/Login.ashx" method="post">
-        <div id="divReg" style="margin:0 auto;height:280px;width:280px;border:2px solid #808080;">
+        <div id="divReg" style="margin:0 auto;height:380px;width:280px;border:2px solid #808080;">
             <div >用户名：<input type="text" name="name" /></div>
             <div ><span style="text-align:justify">密码：</span><input type="password" name="pwd" /></div>
             <div >验证码：<input type="text" name="vcode" style="width:55px;" /> <img id="vcode" src="/ashx/ImgVcode.ashx" style="vertical-align:middle;"/></div>
             <div style="padding-left:100px;"><input type="submit" value="提交" style="width: 40px" /></div>
+
+            <div>
+                <input type="text" id="timeText" name="timeText" value="" />
+                <input type="button" onclick="GetTime()" id="getTime" value="获得系统时间" />
             </div>
-        <div>
-        <input  type="text" id="timeText" name="timeText" value=""/>
-        <div><input type="button" onclick="GetTime()" id="getTime" value="获得系统时间" /></div></div>
+            <div>
+                <select id="selectList" >
+                    <option value="0">点击选择</option>
+                </select>
+                <input type="button" onclick="GetList()" id="getTime" value="获得列表" />
+            </div>
+            </div>
+        
     </form>
     
 </body>
