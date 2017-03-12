@@ -22,9 +22,8 @@ namespace WebApplication5.ashx
                 using (Graphics gra = Graphics.FromImage(img))
                 {
                     gra.Clear(Color.DarkSeaGreen);
-                    string s = Getstring(4);
-                    context.Session["vcode"] = s.ToString().ToLower();
-                    gra.DrawString(s, new Font("宋体",18, FontStyle.Strikeout),new SolidBrush(Color.DarkRed),new PointF(1,1));
+                    context.Session["vcode"] = Getstring(4).ToLower();
+                    gra.DrawString(Getstring(4).ToLower(), new Font("宋体",18, FontStyle.Strikeout),new SolidBrush(Color.DarkRed),new PointF(1,1));
                     gra.DrawLines(Pens.AliceBlue, new PointF[] {
                         new PointF(0,8),
                         new PointF(50,10),

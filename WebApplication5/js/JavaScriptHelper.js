@@ -2,6 +2,7 @@
 
 };
 var jsonSerializerInAJAX = {
+    //创建一个异步对象；
     XmlHttpRequester: function () {
         var xhrer;
         if (window.XMLHttpRequest()) {
@@ -11,11 +12,13 @@ var jsonSerializerInAJAX = {
         }
         return xhrer;
     },
-    GetMethodByAJAX:function() {
-        
+    //get请求的异步对象处理方法；
+    GetMethodByAJAX: function (url, callBackfunc) {
+        AJAXProcessMethod("get", url, null, callBackfunc);
     },
-    PostMethodByAJAX:function () {
-        
+    //post请求的异步对象处理方法；
+    PostMethodByAJAX: function (url, params, callBackfunc) {
+        AJAXProcessMethod("post", url, params, callBackfunc);
     },
     AJAXProcessMethod:function (method,url,params,callBackfunc) {
         var xhrer=this.XmlHttpRequester();
@@ -27,8 +30,18 @@ var jsonSerializerInAJAX = {
         if (HttpMethod=="post") {
             xhrer.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         }
-        xhrer.onreadystatechange=function () {
-                
+        xhrer.onreadystatechange = function () {
+            var results = xhrer.responseText;
+            var jsons=JSON.parse(results);
+            callBackfunc(jsons);
+        }
+        if (HttpMethod=="get")
+        {
+            xhrer.send(null);
+        }
+        if (HttpMethod=="post")
+        {
+            xhrer.send(params);
         }
     }
 
